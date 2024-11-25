@@ -134,7 +134,16 @@ class Zombie:
             return BehaviorTree.FAIL
 
     def flee_from_boy(self, r=0.5):
-        pass
+        self.state = 'Walk'
+        self.dir = math.atan2(self.y - play_mode.boy.y, self.x - play_mode.boy.x)
+        distance = RUN_SPEED_PPS * game_framework.frame_time
+        self.x += distance * math.cos(self.dir)
+        self.y += distance * math.sin(self.dir)
+
+        if not self.distance_less_than(play_mode.boy.x, play_mode.boy.y, self.x, self.y, r):
+            return BehaviorTree.SUCCESS
+        else:
+            return BehaviorTree.RUNNING
 
     def is_far_from_boy(self, r=10):
         pass
