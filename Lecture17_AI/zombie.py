@@ -128,7 +128,10 @@ class Zombie:
         return BehaviorTree.SUCCESS
 
     def compare_balls(self):
-        pass
+        if self.ball_count >= play_mode.boy.ball_count:
+            return BehaviorTree.SUCCESS
+        else:
+            return BehaviorTree.FAIL
 
     def flee_from_boy(self, r=0.5):
         pass
@@ -137,4 +140,4 @@ class Zombie:
         pass
 
     def build_behavior_tree(self):
-        self.bt = BehaviorTree(root)
+        pass
